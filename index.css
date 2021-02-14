@@ -1,5 +1,7 @@
+@import "./widgets/line.css";
+@import "./widgets/button.css";
+
 html {
-    /*background: #141414;*/
     background: #000000;
 }
 
@@ -9,15 +11,10 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    /*color: #ededed;*/
-    /*color: var(--color-text);*/
-    /*background-color: #fff;*/
-    /*background-color: var(--color-bg);*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/*Color schemes */
 .demo-1 {
     --color-text: #ededed;
     --color-bg: #000;
@@ -31,7 +28,6 @@ body {
     --color-deco: #161616;
 }
 
-/* Fade effect */
 .js body {
     opacity: 0;
     transition: opacity 0.3s;
@@ -41,7 +37,6 @@ body {
     opacity: 1;
 }
 
-/* Page Loader */
 .js .loading::before {
     content: '';
     position: fixed;
@@ -67,15 +62,6 @@ body {
     opacity: 0.4;
     background: var(--color-link);
     animation: loaderAnim 0.7s linear infinite alternate forwards;
-}
-
-.content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    min-height: 100%;
 }
 
 .scene {
@@ -150,6 +136,8 @@ body {
 }
 
 #bar {
+    width: 0;
+
     fill: url("#gradient-bar");
 
     stroke-width: 220px;
@@ -161,6 +149,7 @@ body {
     transition: transform 1s;
 
     animation: bar 2s ease-out forwards;
+    animation-delay: 0.25s;
 }
 
 #bar:hover {
@@ -210,16 +199,6 @@ body {
     animation: line-anim 2s ease forwards;
 }
 
-@keyframes fill {
-    from {
-        fill: transparent;
-    }
-
-    to {
-        fill: white;
-    }
-}
-
 @keyframes bar {
     from {
         width: 0;
@@ -230,20 +209,12 @@ body {
     }
 }
 
-@keyframes line-anim {
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-
 #downloads {
     position: absolute;
     top: 50%;
     left: 8%;
     transform: translate(105%, 160%);
     z-index: 126;
-
-    animation: button 2s ease-in-out forwards;
 }
 
 #socials {
@@ -252,59 +223,6 @@ body {
     left: 8%;
     transform: translate(212%, 160%);
     z-index: 126;
-
-    animation: button 2s ease-in-out forwards;
-}
-
-.button {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 24px;
-    height: 48px;
-    width: 185px;
-    transition: all 0.25s;
-    cursor: pointer;
-    margin: 5px;
-}
-
-.button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-
-.button span:after {
-    content: '\2192';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.button:hover span {
-    padding-right: 25px;
-}
-
-.button:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-
-@keyframes button {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 
 .ui {

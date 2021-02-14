@@ -1,0 +1,52 @@
+.button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 24px;
+    height: 48px;
+    width: 185px;
+    transition: all 0.25s;
+    cursor: pointer;
+    margin: 5px;
+
+    animation: button 2s ease-in-out forwards;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\2192';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+@keyframes button {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

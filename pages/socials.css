@@ -1,0 +1,126 @@
+@import "../widgets/line.css";
+@import "../widgets/button.css";
+
+body {
+    background-color: #000000;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+    stroke: #FFFFFF;
+}
+
+#icons {
+    animation: fill 3s ease-in-out forwards;
+}
+
+#youtube {
+    transform: translateY(-100%);
+    stroke-dasharray: 234;
+    stroke-dashoffset: 234;
+    animation: line-anim 2s ease forwards;
+}
+
+#github {
+    stroke-dasharray: 273;
+    stroke-dashoffset: 273;
+    animation: line-anim 2s ease forwards;
+}
+
+#twitter {
+    transform: translateY(100%);
+    stroke-dasharray: 241;
+    stroke-dashoffset: 241;
+    animation: line-anim 2s ease forwards;
+}
+
+@keyframes fill {
+    from {
+        fill: transparent;
+    }
+
+    to {
+        fill: #FFFFFF;
+    }
+}
+
+@keyframes line-anim {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.button {
+    background-color: transparent !important;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    display: block;
+    height: 48px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    line-height: 24px;
+}
+
+.button:hover span {
+    padding-right: 25px !important;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+#youtube-button {
+    /*transform: translateY(-133%);*/
+}
+
+#github-button {
+    /*transform: translateY(133%);*/
+}
+
+#twitter-button {
+    /*transform: translateY(266%);*/
+    /*transform: translateY(133%);*/
+}
+
+.v-stack {
+    position: absolute;
+    top: 50%;
+    /*left: 50%;*/
+    transform: translate(-50%, -50%) scale(1.25, 1.25);
+    display: table;
+}
+
+#ui {
+    left: 50%;
+    overflow: hidden;
+    animation: ui-move 1.5s ease-in-out forwards;
+}
+
+@keyframes ui-move {
+    from {
+        width: 0;
+    }
+    to {
+        width: 1em;
+    }
+}
+
+#background {
+    left: 60%;
+    animation: content-move 1.5s ease-in-out forwards;
+}
+
+@keyframes content-move {
+    from {
+        left: 60%;
+    }
+    to {
+        left: 40%;
+    }
+}

@@ -1,29 +1,18 @@
-/**
- * main.js
- * http://www.codrops.com
- *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- *
- * Copyright 2018, Codrops
- * http://www.codrops.com
- */
 {
-    // From https://davidwalsh.name/javascript-debounce-function.
     function debounce(func, wait, immediate) {
-        var timeout;
+        let timeout;
         return function () {
-            var context = this, args = arguments;
-            var later = function () {
+            const context = this, args = arguments;
+            const later = function () {
                 timeout = null;
                 if (!immediate) func.apply(context, args);
             };
-            var callNow = immediate && !timeout;
+            const callNow = immediate && !timeout;
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
             if (callNow) func.apply(context, args);
         };
-    };
+    }
 
     class Blob {
         constructor(el, options) {
@@ -32,14 +21,14 @@
             this.options = {};
             Object.assign(this.options, options);
             this.init();
-        }
+        };
 
         init() {
             this.rect = this.DOM.el.getBoundingClientRect();
             this.descriptions = [];
             this.layers = Array.from(this.DOM.el.querySelectorAll('path'), t => {
                 t.style.transformOrigin = `${this.rect.left + this.rect.width / 2}px ${this.rect.top + this.rect.height / 2}px`;
-                t.style.opacity = 0;
+                t.style.opacity = '0';
                 this.descriptions.push(t.getAttribute('d'));
                 return t;
             });
@@ -48,7 +37,7 @@
                 this.rect = this.DOM.el.getBoundingClientRect();
                 this.layers.forEach(layer => layer.style.transformOrigin = `${this.rect.left + this.rect.width / 2}px ${this.rect.top + this.rect.height / 2}px`);
             }, 20));
-        }
+        };
 
         intro() {
             anime.remove(this.layers);
@@ -65,17 +54,18 @@
                     easing: 'linear'
                 }
             });
-        }
+        };
 
         expand() {
-            return new Promise((resolve, reject) => {
+            //return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 let halfway = false;
                 anime({
                     targets: this.layers,
                     duration: 1000,
                     delay: (t, i) => i * 50 + 200,
                     easing: [0.8, 0, 0.1, 0],
-                    d: (t) => t.getAttribute('pathdata:id'),
+                    d: (t) => t.getAttribute('id'),
                     update: function (anim) {
                         if (anim.progress > 75 && !halfway) {
                             halfway = true;
@@ -84,10 +74,11 @@
                     }
                 });
             });
-        }
+        };
 
         collapse() {
-            return new Promise((resolve, reject) => {
+            //return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 let halfway = false;
                 anime({
                     targets: this.layers,
@@ -103,7 +94,7 @@
                     }
                 });
             });
-        }
+        };
 
         hide() {
             anime.remove(this.layers);
@@ -120,131 +111,63 @@
                     easing: 'linear'
                 }
             });
-        }
+        };
 
         show() {
             setTimeout(() => this.intro(), 400);
-        }
-    };
+        };
+    }
 
     window.Blob = Blob;
+    window.isOpen = false;
 
     const DOM = {};
     let blobs = [];
     DOM.svg = document.querySelector('svg.scene');
+    DOM.ui = document.querySelector('nav.ui');
+
     Array.from(DOM.svg.querySelectorAll('g')).forEach((el) => {
         const blob = new Blob(el);
         blobs.push(blob);
         blob.intro();
-
-        el.onmouseout = function () {
-            document.body.classList.remove('test')
-        }
-
-        el.onmouseenter = function () {
-            document.body.classList.add('test')
-        }
     });
 
-    //DOM.content = document.querySelector('.content--reveal');
-    // DOM.contentInner = Array.from(DOM.content.querySelectorAll('.content__inner'), (el) => {
-    //     charming(el);
-    //     return el;
-    // });
-    // DOM.ctrlBack = DOM.content.querySelector('.content__close');
-    // DOM.links = Array.from(document.querySelectorAll('.menu > .menu__item'));
-    //
-    // DOM.links.forEach((link, pos) => {
-    //     link.style.pointerEvents = 'none';
-    //     charming(link);
-    //
-    //     anime({
-    //         targets: link.querySelectorAll('span'),
-    //         duration: 800,
-    //         delay: (t,i) => anime.random(0,600)+500,
-    //         easing: 'easeInOutQuad',
-    //         opacity: [0,1],
-    //         complete: () => {
-    //             link.style.pointerEvents = 'auto';
-    //             link.classList.add('menu__item--showDeco');
-    //         }
-    //     });
-    //
-    //     link.addEventListener('click', (ev) => {
-    //         ev.preventDefault();
-    //         open(pos);
-    //     });
-    // });
-    //
-    // DOM.ctrlBack.addEventListener('click', () => close());
-    //
-    // let current;
-    // const open = (pos) => {
-    //     this.isOpen = true;
-    //     anime({
-    //         targets: DOM.links.map((link) => link.querySelectorAll('span')),
-    //         delay: (t,i) => anime.random(0,300),
-    //         duration: 200,
-    //         easing: 'easeInOutQuad',
-    //         opacity: 0,
-    //         begin: () => DOM.links.forEach(link => {
-    //             link.style.pointerEvents = 'none';
-    //             link.classList.remove('menu__item--showDeco');
-    //         })
-    //     });
-    //
-    //     current = pos;
-    //     const currentBlob = blobs[current];
-    //     currentBlob.expand().then(() => {
-    //         DOM.content.style.pointerEvents = 'auto';
-    //
-    //         const contentInner = DOM.contentInner[pos];
-    //         contentInner.style.opacity = 1;
-    //         anime({
-    //             targets: [contentInner.querySelectorAll('.content__title > span'), contentInner.querySelectorAll('.content__subtitle > span'), DOM.ctrlBack],
-    //             duration: 200,
-    //             delay: (t,i) => anime.random(0,600),
-    //             easing: 'easeInOutQuad',
-    //             opacity: [0,1]
-    //         });
-    //     });
-    //
-    //     blobs.filter(el => el != currentBlob).forEach(blob => blob.hide());
-    // };
-    //
+    Array.from(DOM.ui.querySelectorAll('button')).forEach(function (el) {
+        el.addEventListener('click', (ev) => {
+            ev.preventDefault();
+
+            open(Math.floor(Math.random() * (6)));
+        });
+    });
+
+    let current;
+    const open = (i) => {
+        window.isOpen = true;
+        window.reset();
+        anime({
+            targets: '.ui',
+            opacity: ['100%', '0%'],
+            easing: 'easeInOutQuad',
+            duration: '2s',
+            complete: function () {
+                document.querySelector('.ui').style.visibility = 'hidden';
+            }
+        });
+
+        current = i;
+        const currentBlob = blobs[current];
+        currentBlob.expand().then(() => {
+        });
+        blobs.filter(el => el !== currentBlob).forEach(blob => blob.hide());
+    }
+
     // const close = () => {
-    //     if ( !this.isOpen ) return;
+    //     if (!this.isOpen) return;
     //     this.isOpen = false;
-    //
-    //     const contentInner = DOM.contentInner[current];
-    //     anime({
-    //         targets: [contentInner.querySelectorAll('.content__title > span'), contentInner.querySelectorAll('.content__subtitle > span'), DOM.ctrlBack],
-    //         delay: (t,i) => anime.random(0,300),
-    //         duration: 200,
-    //         easing: 'easeInOutQuad',
-    //         opacity: 0,
-    //         complete: () => {
-    //             contentInner.style.opacity = 0;
-    //             DOM.content.style.pointerEvents = 'none';
-    //         }
-    //     });
     //
     //     blobs[current].collapse().then(() => {
     //         current = -1;
-    //
-    //         anime({
-    //             targets: DOM.links.map((link) => link.querySelectorAll('span')),
-    //             duration: 200,
-    //             delay: (t,i) => anime.random(0,600),
-    //             easing: 'easeInOutQuad',
-    //             opacity: 1,
-    //             complete: () => DOM.links.forEach(link => {
-    //                 link.style.pointerEvents = 'auto';
-    //                 link.classList.add('menu__item--showDeco');
-    //             })
-    //         });
     //     });
-    //     blobs.filter(el => el != blobs[current]).forEach(blob => blob.show());
-    // };
+    //     blobs.filter(element => element !== blobs[current]).forEach(blob => blob.show());
+    // }
 }
-;
