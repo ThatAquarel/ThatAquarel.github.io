@@ -196,7 +196,6 @@
 
     const close = () => {
         if (!window.isOpen) return;
-        window.isOpen = false;
 
         document.querySelector('.ui').style.display = 'visible';
         setTimeout(function () {
@@ -205,9 +204,6 @@
                 opacity: ['0%', '100%'],
                 easing: 'easeInOutQuad',
                 duration: '2s',
-                complete: function () {
-                    window.init();
-                }
             });
         }, 1000);
 
@@ -218,6 +214,11 @@
             duration: '2s',
         });
         DOM.hidden.style.display = 'none';
+
+        setTimeout(function () {
+            window.isOpen = false;
+            window.init();
+        }, 1500);
 
         blobs[current].collapse().then(() => {
             current = -1;
