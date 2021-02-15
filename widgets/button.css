@@ -9,6 +9,7 @@
     transition: all 0.25s;
     cursor: pointer;
     margin: 5px;
+    outline: none;
 
     animation: button 2s ease-in-out forwards;
 }
@@ -49,4 +50,28 @@
     to {
         opacity: 1;
     }
+}
+
+.button-back span:after {
+    content: '';
+    right: 0;
+}
+
+.button-back span:before {
+    content: '\2190';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+}
+
+.button-back:hover span {
+    padding-left: 25px;
+    padding-right: 0;
+}
+
+.button-back:hover span:before {
+    opacity: 1;
+    left: 0;
 }

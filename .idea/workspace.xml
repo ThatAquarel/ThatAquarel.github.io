@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="325f8ef2-26eb-475c-9a3a-207770bb858f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/credits.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/modern.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/downloads.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/downloads.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/socials.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/socials.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/aqua000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/github.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/twitter.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/youtube.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/widgets/button.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/widgets/line.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/render.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ressources/downloads.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/button.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,12 +86,39 @@
       <updated>1609810937115</updated>
       <workItem from="1609810938304" duration="60817000" />
       <workItem from="1610311052980" duration="501000" />
-      <workItem from="1613218390105" duration="41043000" />
+      <workItem from="1613218390105" duration="53122000" />
     </task>
+    <task id="LOCAL-00001" summary="Update buttons + Cleanup">
+      <created>1613328341153</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613328341153</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Update buttons + Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update buttons + Cleanup" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613312635489">
@@ -96,10 +129,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="675" y="324" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1613237131285" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613327917429">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613345197781">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613327917429" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613345197781" />
+    <state x="588" y="108" key="CommitChangelistDialog2" timestamp="1613328340628">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="588" y="108" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1613328340628" />
     <state width="1899" height="262" key="GridCell.Tab.0.bottom" timestamp="1610057072967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -168,6 +205,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" width="1349" height="710" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1613315380833" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1613328350907">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1613328350907" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1613312916180">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

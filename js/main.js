@@ -124,7 +124,9 @@
     const DOM = {};
     let blobs = [];
     DOM.svg = document.querySelector('svg.scene');
-    DOM.ui = document.querySelector('nav.ui');
+    DOM.ui = document.querySelectorAll('nav.ui > button');
+    DOM.close = document.querySelector('.close-menu');
+    DOM.hidden = document.querySelector('article.hidden');
 
     Array.from(DOM.svg.querySelectorAll('g')).forEach((el) => {
         const blob = new Blob(el);
@@ -132,17 +134,29 @@
         blob.intro();
     });
 
-    Array.from(DOM.ui.querySelectorAll('button')).forEach(function (el) {
+    let page = -1;
+    Array.from(DOM.ui).forEach((el, i) => {
         el.addEventListener('click', (ev) => {
             ev.preventDefault();
+
+            el.disabled = true;
+            DOM.close.disabled = false;
+
+            page = i;
+            if (page === 0) {
+                document.title = 'Aquarel - Downloads';
+            } else if (page === 1) {
+                document.title = 'Aquarel - Socials';
+            }
 
             open(Math.floor(Math.random() * (6)));
         });
     });
 
-    let current;
+    let current = -1;
     const open = (i) => {
         window.isOpen = true;
+
         window.reset();
         anime({
             targets: '.ui',
@@ -150,24 +164,65 @@
             easing: 'easeInOutQuad',
             duration: '2s',
             complete: function () {
-                document.querySelector('.ui').style.visibility = 'hidden';
+                document.querySelector('.ui').style.display = 'hidden';
             }
         });
 
         current = i;
         const currentBlob = blobs[current];
         currentBlob.expand().then(() => {
+            DOM.hidden.style.display = 'initial';
+            anime({
+                targets: '.hidden',
+                opacity: ['0%', '100%'],
+                easing: 'easeInOutQuad',
+                duration: '1s'
+            });
         });
         blobs.filter(el => el !== currentBlob).forEach(blob => blob.hide());
     }
 
-    // const close = () => {
-    //     if (!this.isOpen) return;
-    //     this.isOpen = false;
-    //
-    //     blobs[current].collapse().then(() => {
-    //         current = -1;
-    //     });
-    //     blobs.filter(element => element !== blobs[current]).forEach(blob => blob.show());
-    // }
+    DOM.close.addEventListener('click', (ev) => {
+        ev.preventDefault();
+
+        Array.from(DOM.ui).forEach((el) => {
+            el.disabled = false;
+        });
+        DOM.close.disabled = true;
+
+        document.title = 'Aquarel';
+        close();
+    });
+
+    const close = () => {
+        if (!window.isOpen) return;
+        window.isOpen = false;
+
+        document.querySelector('.ui').style.display = 'visible';
+        setTimeout(function () {
+            anime({
+                targets: '.ui',
+                opacity: ['0%', '100%'],
+                easing: 'easeInOutQuad',
+                duration: '2s',
+                complete: function () {
+                    window.init();
+                }
+            });
+        }, 1000);
+
+        anime({
+            targets: '.hidden',
+            opacity: ['100%', '0%'],
+            easing: 'easeInOutQuad',
+            duration: '2s',
+        });
+        DOM.hidden.style.display = 'none';
+
+        blobs[current].collapse().then(() => {
+            current = -1;
+            page = -1;
+        });
+        blobs.filter(element => element !== blobs[current]).forEach(blob => blob.show());
+    }
 }

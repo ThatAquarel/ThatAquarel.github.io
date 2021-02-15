@@ -12,12 +12,12 @@
         background.style.transition = "none";
     }, 3000);
 
+    const skew = window.innerWidth / 5;
     let x = 0;
     let z = 50;
     let y = 0;
 
     body.addEventListener("mousemove", (evt) => {
-        let skew = window.innerWidth / 5;
         x = (window.innerWidth / 2 - (evt.pageX - skew));
         y = (window.innerHeight / 2 - evt.pageY);
 

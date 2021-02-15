@@ -233,4 +233,19 @@ body {
     height: 400px;
     width: 700px;
     z-index: 129;
+    /*display: initial;*/
+}
+
+.hidden {
+    position: absolute;
+    display: none;
+    z-index: 256;
+}
+
+.close-menu {
+    background-color: transparent;
+}
+
+.close-menu:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
