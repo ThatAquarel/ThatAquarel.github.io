@@ -218,7 +218,7 @@
         setTimeout(function () {
             window.isOpen = false;
             window.init();
-        }, 1500);
+        }, 2000);
 
         blobs[current].collapse().then(() => {
             current = -1;

@@ -5,7 +5,7 @@
 
     const rotate = 75;
 
-    container.style.transition = "all 0.2s";
+    container.style.transition = "all 0.2s"
     background.style.transition = "all 0.2s";
     setTimeout(function () {
         container.style.transition = "none"
@@ -48,6 +48,11 @@
     window.init = () => {
         container.style.transition = "all 0.1s";
         background.style.transition = "all 0.1s";
+
+        setTimeout(function () {
+            container.style.transition = "none";
+            background.style.transition = "none";
+        }, 500);
     }
 
     window.reset = () => {
