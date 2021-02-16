@@ -14,18 +14,18 @@
 
     const skew = window.innerWidth / 5;
     let x = 0;
-    let y = 0;
     let z = 50;
+    let y = 0;
 
-    body.addEventListener("mousemove", (ev) => {
-        x = (window.innerWidth / 2 - (ev.pageX - skew));
-        y = (window.innerHeight / 2 - ev.pageY);
+    body.addEventListener("mousemove", (evt) => {
+        x = (window.innerWidth / 2 - (evt.pageX - skew));
+        y = (window.innerHeight / 2 - evt.pageY);
 
         setTransform();
     });
 
-    body.addEventListener("wheel", (ev) => {
-        z += ev.deltaY * -0.01;
+    body.addEventListener("wheel", (evt) => {
+        z += evt.deltaY * -0.01;
 
         setTransform();
     });
@@ -39,10 +39,10 @@
     });
 
     function setTransform() {
-        if (window.isOpen) return;
-
-        container.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%) translateZ(${z}px)`;
-        background.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%)`;
+        if (!window.isOpen) {
+            container.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%) translateZ(${z}px)`;
+            background.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%)`;
+        }
     }
 
     window.init = () => {
@@ -57,12 +57,8 @@
 
     window.reset = () => {
         container.style.transition = "all 0.5s";
-        container.style.transform = "rotateX(0deg) rotateY(0deg) translate(0, -50%)";
+        container.style.transform = "rotateX(0deg) rotateY(0deg) translate(0, -50%)"
         background.style.transition = "all 0.5s";
-        background.style.transform = "rotateX(0deg) rotateY(0deg) translate(0, -50%)";
-
-        x = 0;
-        y = 0;
-        z = 50;
+        background.style.transform = "rotateX(0deg) rotateY(0deg) translate(0, -50%)"
     }
 }
