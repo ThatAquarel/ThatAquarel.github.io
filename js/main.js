@@ -1,4 +1,6 @@
 {
+    document.SameSite = 'Strict';
+
     function debounce(func, wait, immediate) {
         let timeout;
         return function () {
@@ -124,9 +126,10 @@
     const DOM = {};
     let blobs = [];
     DOM.svg = document.querySelector('svg.scene');
-    DOM.ui = document.querySelectorAll('nav.ui > button');
+    DOM.buttons = document.querySelectorAll('nav.ui > button');
+    DOM.ui = document.querySelector('.ui');
     DOM.close = document.querySelector('.close-menu');
-    DOM.hidden = document.querySelector('article.hidden');
+    DOM.hidden = document.querySelector('.hidden');
 
     Array.from(DOM.svg.querySelectorAll('g')).forEach((el) => {
         const blob = new Blob(el);
@@ -135,12 +138,9 @@
     });
 
     let page = -1;
-    Array.from(DOM.ui).forEach((el, i) => {
+    Array.from(DOM.buttons).forEach((el, i) => {
         el.addEventListener('click', (ev) => {
             ev.preventDefault();
-
-            el.disabled = true;
-            DOM.close.disabled = false;
 
             page = i;
             if (page === 0) {
@@ -153,42 +153,36 @@
         });
     });
 
-    let current = -1;
+    let current_blob = -1;
+    let animUi = -1;
     const open = (i) => {
         window.isOpen = true;
 
         window.reset();
-        anime({
+        animUi = anime({
             targets: '.ui',
-            opacity: ['100%', '0%'],
+            opacity: ['1', '0'],
             easing: 'easeInOutQuad',
             duration: '2s',
+            autoplay: false,
             complete: function () {
-                document.querySelector('.ui').style.display = 'hidden';
+                DOM.ui.style.opacity = '0';
+                DOM.ui.style.pointerEvents = 'none';
             }
         });
+        animUi.play();
 
-        current = i;
-        const currentBlob = blobs[current];
+        current_blob = i;
+        const currentBlob = blobs[current_blob];
         currentBlob.expand().then(() => {
-            DOM.hidden.style.display = 'initial';
-            anime({
-                targets: '.hidden',
-                opacity: ['0%', '100%'],
-                easing: 'easeInOutQuad',
-                duration: '1s'
-            });
+            DOM.hidden.style.opacity = '1';
+            DOM.hidden.style.pointerEvents = 'all';
         });
         blobs.filter(el => el !== currentBlob).forEach(blob => blob.hide());
     }
 
     DOM.close.addEventListener('click', (ev) => {
         ev.preventDefault();
-
-        Array.from(DOM.ui).forEach((el) => {
-            el.disabled = false;
-        });
-        DOM.close.disabled = true;
 
         document.title = 'Aquarel';
         close();
@@ -198,31 +192,24 @@
         if (!window.isOpen) return;
         window.isOpen = false;
 
-        document.querySelector('.ui').style.display = 'visible';
-        setTimeout(function () {
-            anime({
-                targets: '.ui',
-                opacity: ['0%', '100%'],
-                easing: 'easeInOutQuad',
-                duration: '2s',
-                complete: function () {
-                    window.init();
-                }
-            });
+        DOM.ui.style.pointerEvents = 'initial';
+        setTimeout(() => {
+            animUi.play();
+            animUi.reverse();
+
+            setTimeout(() => {
+                window.init();
+            }, 1500);
         }, 1000);
 
-        anime({
-            targets: '.hidden',
-            opacity: ['100%', '0%'],
-            easing: 'easeInOutQuad',
-            duration: '2s',
-        });
-        DOM.hidden.style.display = 'none';
+        DOM.hidden.style.opacity = '0';
+        DOM.hidden.style.pointerEvents = 'none';
 
-        blobs[current].collapse().then(() => {
-            current = -1;
+        blobs[current_blob].collapse().then(() => {
+            current_blob = -1;
             page = -1;
+            animUi = -1;
         });
-        blobs.filter(element => element !== blobs[current]).forEach(blob => blob.show());
+        blobs.filter(element => element !== blobs[current_blob]).forEach(blob => blob.show());
     }
 }

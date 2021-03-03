@@ -233,12 +233,13 @@ body {
     height: 400px;
     width: 700px;
     z-index: 129;
-    /*display: initial;*/
 }
 
 .hidden {
     position: absolute;
-    display: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
     z-index: 256;
 }
 

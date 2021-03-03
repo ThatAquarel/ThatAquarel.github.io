@@ -39,10 +39,9 @@
     });
 
     function setTransform() {
-        if (!window.isOpen) {
-            container.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%) translateZ(${z}px)`;
-            background.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%)`;
-        }
+        if (window.isOpen) return;
+        container.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%) translateZ(${z}px)`;
+        background.style.transform = `rotateX(${y / -rotate}deg) rotateY(${x / rotate}deg) translate(0, -50%)`;
     }
 
     window.init = () => {
